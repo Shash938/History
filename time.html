@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>Geolocation Example</title>
+</head>
+<body>
+  <h1>Your Location</h1>
+  <p id="location">Allow location access to see your coordinates.</p>
+
+  <script>
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          document.getElementById("location").textContent = 
+            `Latitude: ${latitude}, Longitude: ${longitude}`;
+        },
+        (error) => {
+          document.getElementById("location").textContent = 
+            "Unable to retrieve location.";
+        }
+      );
+    } else {
+      document.getElementById("location").textContent = 
+        "Geolocation is not supported by your browser.";
+    }
+  </script>
+</body>
+</html>
+
