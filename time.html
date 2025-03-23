@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Track Your Location</title>
+  <style>
+    body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+		nav {
+            background-color: #000;
+            color: #FFF;
+            padding: 10px;
+            text-align: right;
+        }
+        nav a {
+            color: #FFF;
+            text-decoration: none;
+            margin: 0 10px;
+            text-align: right;
+        }
+        nav a:hover {
+            color: #FF0000;
+        }
+
+    .container {
+      margin: 20px auto;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .info {
+      margin-top: 20px;
+    }
+
+    #bangalore-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 2000;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    #bangalore-popup h2 {
+      margin-top: 0;
+    }
+
+    #close-popup {
+      background: none;
+      border: none;
+      color: #007bff;
+      font-size: 16px;
+      cursor: pointer;
+      float: right;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1500;
+    }
+
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="projcs.html">Home</a>
+    <a href="w.html">World War I</a>
+    <a href="w1.html">World War II</a>
+    <a href="batt.html">Battles</a>
+    <a href="time.html">Location</a>
+  </nav>
+
+  <div class="container">
+    <h1>Location and Importance</h1>
+    <p id="location">Click the button below to find your location.</p>
+    <button onclick="getLocationAndShowPopup()">Track Location</button>
+  </div>
+
+  <div id="overlay"></div>
+  <div id="bangalore-popup">
+    <button id="close-popup" onclick="closePopup()">Close 🔐</button>
+    <h2>Bangalore's Importance in WW1 and WW2</h2>
+    <p>
+      During World War I, Bangalore served as a major military hub for the British Indian Army. 
+      The city was home to training facilities and cantonments that supported the war effort. 
+      Soldiers from Bangalore were deployed to various fronts, including Europe and the Middle East.
+    </p>
+    <p>
+      In World War II, Bangalore's strategic location made it a critical center for military 
+      operations and aircraft manufacturing. The Hindustan Aeronautics Limited (HAL), established 
+      during this time, played a key role in producing aircraft and supporting Allied forces. 
+      The city also served as a safe haven for refugees and military personnel.
+    </p>
+  </div>
+
+  <script>
+    let locationFetched = false; 
+    function getLocationAndShowPopup() {
+      const locationElement = document.getElementById("location");
+
+      if (!locationFetched) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              locationElement.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+              locationFetched = true; 
+              showPopup();
+            },
+            (error) => {
+              locationElement.textContent = "Unable to retrieve location. Please try again";
+            }
+          );
+        } else {
+          locationElement.textContent = "Geolocation is not supported by your browser";
+        }
+      } else {
+        showPopup();
+      }
+    }
+
+    function showPopup() {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("bangalore-popup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("bangalore-popup").style.display = "none";
+
+     
+      locationFetched = false;
+      document.getElementById("location").textContent = "Click the button below to find your location";
+    }
+  </script>
+</body>
+</html>

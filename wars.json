@@ -1,0 +1,44 @@
+{
+    "wars": [
+        {
+            "id": 1,
+            "name": "World War I",
+            "startDate": "1914-07-28",
+            "endDate": "1918-11-11",
+            "casualties": 17000000,
+            "description": "A global war originating in Europe."
+        },
+        {
+            "id": 2,
+            "name": "World War II",
+            "startDate": "1939-09-01",
+            "endDate": "1945-09-02",
+            "casualties": 85000000,
+            "description": "A global war involving most of the world's nations."
+        },
+        {
+            "id": 3,
+            "name": "Cold War",
+            "startDate": "1947-03-12",
+            "endDate": "1991-12-26",
+            "casualties": 0,
+            "description": "A period of geopolitical tension between the Soviet Union and the United States."
+        },
+        {
+            "id": 4,
+            "name": "Vietnam War",
+            "startDate": "1955-11-01",
+            "endDate": "1975-04-30",
+            "casualties": 2000000,
+            "description": "A conflict in Vietnam, Laos, and Cambodia."
+        },
+        {
+            "id": 5,
+            "name": "Korean War",
+            "startDate": "1950-06-25",
+            "endDate": "1953-07-27",
+            "casualties": 2800000,
+            "description": "A war between North and South Korea."
+        }
+    ]
+}
