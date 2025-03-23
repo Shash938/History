@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WarApp">
+<head>
+    <title>History of World Wars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: black;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-right: auto;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .section-bg {
+            height: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url("fu.jpeg");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+        }
+
+        .search-section {
+            padding: 50px;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .search-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .search-section input {
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid red;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+        }
+
+        .search-btn {
+            padding: 12px 20px;
+            background-color: red;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .search-btn:hover {
+            background-color: darkred;
+            box-shadow: 0 0 10px red;
+        }
+
+        .result-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 5px;
+            text-align: left;
+            max-width: 800px;
+            display: none; 
+        }
+
+        .signup-section {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 50px;
+            text-align: center;
+            border-top: 2px solid red;
+        }
+
+        .signup-section h2 {
+            font-size: 36px;
+            color: red;
+            text-shadow: 0 0 10px red;
+            margin-bottom: 20px;
+        }
+
+        .signup-section input {
+            padding: 15px;
+            width: 400px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 2px solid red;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .signup-section button {
+            padding: 14px 28px;
+            background-color: red;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .signup-section button:hover {
+            background-color: darkred;
+            box-shadow: 0 0 10px red;
+        }
+
+        footer {
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        
+        .popup {
+            display: none;
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            color: white;
+            border: 2px solid red;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border: none;
+            background: red;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .popup button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body ng-controller="WarController">
+
+    <nav>
+        <div class="nav-logo">War History</div>
+        <a href="projcs.html">Home</a>
+        <a href="w.html">World War I</a>
+        <a href="w1.html">World War II</a>
+        <a href="batt.html">Battles</a>
+        <a href="time.html">Location</a>
+        <i class="fas fa-user nav-icon"></i>
+    </nav>
+
+    <section class="section-bg">
+        <h2>Heroes of the Wars</h2>
+        <a href="du.html" class="btn btn-danger">Know More</a>
+    </section>
+
+    <section class="search-section">
+        <h2>Search for Events</h2>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <input type="text" ng-model="searchText" placeholder="Enter keyword..." style="margin-right: 5px; width: 400px;">
+            <button class="search-btn" ng-click="search()">Search</button>
+        </div>
+
+        <!-- Display Results -->
+        <div class="result-box" id="results">
+            <p id="warText"></p>
+        </div>
+
+    </section>
+
+    <section class="signup-section">
+        <h2>Sign Up for News</h2>
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 War History | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <div class="popup" id="popup">
+        <p>Thank you for subscribing!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
